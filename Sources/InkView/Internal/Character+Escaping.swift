@@ -14,3 +14,12 @@ internal extension Character {
         }
     }
 }
+
+internal extension String {
+    var unescaped: String {
+        return self
+            .replacingOccurrences(of: "&gt;", with: ">")
+            .replacingOccurrences(of: "&lt;", with: "<")
+            .replacingOccurrences(of: "&amp;", with: "&")
+    }
+}

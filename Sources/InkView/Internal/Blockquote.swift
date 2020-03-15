@@ -38,7 +38,7 @@ internal struct Blockquote: Fragment {
     }
     
     func view() -> MarkdownViewWrapper {
-        MarkdownViewWrapper(type: .blockquote(BlockquoteView(text: text.plainText())))
+        MarkdownViewWrapper(type: .blockquote(BlockquoteView(text: text.plainText().unescaped)))
     }
 
     func plainText() -> String {
