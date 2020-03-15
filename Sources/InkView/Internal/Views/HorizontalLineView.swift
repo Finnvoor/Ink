@@ -11,7 +11,7 @@ internal struct HorizontalLineView: View {
     var body: some View {
         Rectangle()
             .frame(height: 2)
-            .foregroundColor(.secondary)
+            .foregroundColor(Color(UIColor.secondarySystemBackground))
             .padding(.horizontal)
     }
 }
