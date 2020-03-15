@@ -25,6 +25,7 @@ struct UILabelView: UIViewRepresentable {
     func makeUIView(context: UIViewRepresentableContext<UILabelView>) -> UILabel {
         let label = UILabel(frame: .zero)
         label.numberOfLines = 0
+        label.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         return label
     }
     
