@@ -23,7 +23,7 @@ public struct MarkdownViewWrapper: Identifiable {
         case .blockquote(let quote):
             return BlockquoteView(text: quote).eraseToAnyView()
         case .formattedText(let text):
-            return Text(text.string).eraseToAnyView()
+            return FormattedTextView(text: text).eraseToAnyView()
         case .none:
             return EmptyView().eraseToAnyView()
         }
