@@ -9,13 +9,23 @@ import SwiftUI
 
 internal struct CodeBlockView: View {
     let text: String
+    let options: MarkdownParser.ViewOptions
     
     var body: some View {
         HStack {
-            Text(self.text)
-                .font(.system(size: 14, design: .monospaced))
-                .padding()
-            Spacer()
+            if options.contains(.wrapsCodeBlock) {
+                Text(self.text)
+                    .font(.system(size: 14, design: .monospaced))
+                    .padding()
+                Spacer()
+            } else {
+                ScrollView(.horizontal) {
+                    Text(self.text)
+                        .font(.system(size: 14, design: .monospaced))
+                        .padding()
+                    Spacer()
+                }
+            }
         }.background(Color(UIColor.secondarySystemBackground)).padding()
     }
 }

@@ -29,7 +29,7 @@ internal struct Heading: Fragment {
         return "<\(tagName)>\(body)</\(tagName)>"
     }
     
-    func view() -> MarkdownViewWrapper {
+    func view(options: MarkdownParser.ViewOptions) -> MarkdownViewWrapper {
         MarkdownViewWrapper(type: .heading(HeadingView(text: text.plainText().unescaped, level: level)))
     }
 

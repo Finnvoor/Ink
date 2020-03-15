@@ -148,7 +148,7 @@ internal struct List: Fragment {
         return "<\(tagName)\(startAttribute)>\(body)</\(tagName)>"
     }
     
-    func view() -> MarkdownViewWrapper {
+    func view(options: MarkdownParser.ViewOptions) -> MarkdownViewWrapper {
         MarkdownViewWrapper(type: .none)
     }
 

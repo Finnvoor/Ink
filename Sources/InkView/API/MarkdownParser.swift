@@ -18,6 +18,18 @@ import SwiftUI
 /// a `Modifier` using the `addModifier` method.
 public struct MarkdownParser {
     private var modifiers: ModifierCollection
+    
+    public struct ViewOptions: OptionSet {
+        public let rawValue: Int
+        
+        static let wrapsCodeBlock = ViewOptions(rawValue: 1 << 0)
+        
+        public init(rawValue: Int) {
+            self.rawValue = rawValue
+        }
+    }
+    
+    public var viewOptions: ViewOptions = []
 
     /// Initialize an instance, optionally passing an array
     /// of modifiers used to customize the parsing process.
@@ -105,7 +117,7 @@ public struct MarkdownParser {
         }
         
         let viewWrappers = fragments.map {
-            $0.fragment.view()
+            $0.fragment.view(options: self.viewOptions)
         }
 
         return Markdown(

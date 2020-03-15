@@ -22,7 +22,7 @@ internal struct HorizontalLine: Fragment {
         "<hr>"
     }
     
-    func view() -> MarkdownViewWrapper {
+    func view(options: MarkdownParser.ViewOptions) -> MarkdownViewWrapper {
         MarkdownViewWrapper(type: .horizontalLine)
     }
 

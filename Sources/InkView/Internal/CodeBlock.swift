@@ -53,11 +53,11 @@ internal struct CodeBlock: Fragment {
         return "<pre><code\(languageClass)>\(code)</code></pre>"
     }
     
-    func view() -> MarkdownViewWrapper {
+    func view(options: MarkdownParser.ViewOptions) -> MarkdownViewWrapper {
         let unescapedCode = code
             .trimmingCharacters(in: .whitespacesAndNewlines)
             .unescaped
-        return MarkdownViewWrapper(type: .codeBlock(CodeBlockView(text: unescapedCode)))
+        return MarkdownViewWrapper(type: .codeBlock(CodeBlockView(text: unescapedCode, options: options)))
     }
 
     func plainText() -> String {

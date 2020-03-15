@@ -39,7 +39,7 @@ struct InlineCode: Fragment {
         return "<code>\(code)</code>"
     }
     
-    func view() -> MarkdownViewWrapper {
+    func view(options: MarkdownParser.ViewOptions) -> MarkdownViewWrapper {
         MarkdownViewWrapper(type: .none)
     }
 

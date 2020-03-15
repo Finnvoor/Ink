@@ -35,7 +35,7 @@ internal struct Link: Fragment {
         return "<a href=\"\(url)\">\(title)</a>"
     }
     
-    func view() -> MarkdownViewWrapper {
+    func view(options: MarkdownParser.ViewOptions) -> MarkdownViewWrapper {
         MarkdownViewWrapper(type: .none)
     }
 

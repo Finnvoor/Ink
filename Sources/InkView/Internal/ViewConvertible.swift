@@ -9,5 +9,5 @@ import Foundation
 import SwiftUI
 
 internal protocol ViewConvertible {
-    func view() -> MarkdownViewWrapper
+    func view(options: MarkdownParser.ViewOptions) -> MarkdownViewWrapper
 }

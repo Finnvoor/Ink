@@ -19,7 +19,7 @@ internal struct Paragraph: Fragment {
         return "<p>\(body)</p>"
     }
     
-    func view() -> MarkdownViewWrapper {
+    func view(options: MarkdownParser.ViewOptions) -> MarkdownViewWrapper {
         MarkdownViewWrapper(type: .none)
     }
 
