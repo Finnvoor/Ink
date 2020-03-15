@@ -18,6 +18,8 @@ public struct MarkdownViewWrapper: Identifiable {
             return text.eraseToAnyView()
         case .heading(let heading):
             return heading.eraseToAnyView()
+        case .horizontalLine:
+            return HorizontalLineView().eraseToAnyView()
         case .blockquote(let blockquote):
             return blockquote.eraseToAnyView()
         case .none:
@@ -30,6 +32,7 @@ public struct MarkdownViewWrapper: Identifiable {
 internal enum MarkdownViewType {
     case text(Text)
     case heading(HeadingView)
+    case horizontalLine
     case blockquote(BlockquoteView)
     case none
 }
