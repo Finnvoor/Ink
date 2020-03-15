@@ -27,7 +27,7 @@ internal struct Image: Fragment {
     }
     
     func view() -> MarkdownViewWrapper {
-        return MarkdownViewWrapper(type: .none)
+        MarkdownViewWrapper(type: .none)
     }
 
     func plainText() -> String {

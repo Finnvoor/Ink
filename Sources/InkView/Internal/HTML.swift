@@ -57,7 +57,7 @@ internal struct HTML: Fragment {
     }
     
     func view() -> MarkdownViewWrapper {
-        return MarkdownViewWrapper(type: .none)
+        MarkdownViewWrapper(type: .none)
     }
 
     func plainText() -> String {

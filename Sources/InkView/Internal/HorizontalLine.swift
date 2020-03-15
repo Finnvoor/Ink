@@ -23,7 +23,7 @@ internal struct HorizontalLine: Fragment {
     }
     
     func view() -> MarkdownViewWrapper {
-        return MarkdownViewWrapper(type: .horizontalLine)
+        MarkdownViewWrapper(type: .horizontalLine)
     }
 
     func plainText() -> String {

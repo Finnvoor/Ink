@@ -50,3 +50,4 @@ InkView currently supports the following Markdown features:
 - Headings (H1 - H6), using leading pound signs, for example `## H2`.
 - Blockquotes can be created by placing a greater-than arrow at the start of a line, like this: `> This is a blockquote`.
 - Horizontal lines can be placed using either three asterisks (`***`) or three dashes (`---`) on a new line.
+- Code blocks, marked with three or more backticks both above and below the block.
