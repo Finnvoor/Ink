@@ -13,7 +13,7 @@ internal struct CodeBlockView: View {
     var body: some View {
         HStack {
             Text(self.text)
-                .font(.system(size: 14))
+                .font(.system(size: 14, design: .monospaced))
                 .padding()
             Spacer()
         }.background(Color(UIColor.secondarySystemBackground)).padding()
