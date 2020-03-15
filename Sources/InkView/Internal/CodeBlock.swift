@@ -54,7 +54,7 @@ internal struct CodeBlock: Fragment {
     }
     
     func view() -> MarkdownViewWrapper {
-        MarkdownViewWrapper(type: .codeBlock(CodeBlockView(text: code)))
+        MarkdownViewWrapper(type: .codeBlock(CodeBlockView(text: code.trimmingCharacters(in: .whitespacesAndNewlines))))
     }
 
     func plainText() -> String {
