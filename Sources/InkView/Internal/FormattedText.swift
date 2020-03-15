@@ -3,7 +3,7 @@
 *  Copyright (c) John Sundell 2019
 *  MIT license, see LICENSE file for details
 */
-import Foundation
+import SwiftUI
 
 internal struct FormattedText: Readable, HTMLConvertible, ViewConvertible, PlainTextConvertible {
     private var components = [Component]()
@@ -50,19 +50,43 @@ internal struct FormattedText: Readable, HTMLConvertible, ViewConvertible, Plain
     }
     
     func view(options: MarkdownParser.ViewOptions) -> MarkdownViewWrapper {
-        let attributedString = components.reduce(into: NSMutableAttributedString(string: "")) { attributedString, component in
+         
+//        var mod: (Text) -> Text = { text in
+//            Text.bold(text)()
+//        }
+        let formattedText = components.reduce(into: Text("")) { text, component in
             switch component {
             case .linebreak:
-                attributedString.append(NSAttributedString(string: "\n"))
-            case .text(let text):
-                attributedString.append(NSAttributedString(string: String(text)))
+                text = text + Text("\n")
+            case .text(let newText):
+                text = text + Text(String(newText))
             case .styleMarker(let marker):
                 break
-            case .fragment(let frament, let rawString):
+            case .fragment(let fragment, let rawString):
                 break
             }
+//            text = mod(text)
+//            Text("").bold()
+//            text = text + modifier(Text(""))
         }
-        return MarkdownViewWrapper(type: .formattedText(text: attributedString))
+        
+        return MarkdownViewWrapper(type: .formattedText(text: formattedText))
+        
+        
+        
+//        let attributedString = components.reduce(into: NSMutableAttributedString(string: "")) { attributedString, component in
+//            switch component {
+//            case .linebreak:
+//                attributedString.append(NSAttributedString(string: "\n"))
+//            case .text(let text):
+//                attributedString.append(NSAttributedString(string: String(text)))
+//            case .styleMarker(let marker):
+//                break
+//            case .fragment(let frament, let rawString):
+//                break
+//            }
+//        }
+//        return MarkdownViewWrapper(type: .formattedText(text: attributedString))
     }
 
     func plainText() -> String {

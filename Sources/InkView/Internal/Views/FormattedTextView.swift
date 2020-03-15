@@ -9,27 +9,9 @@ import SwiftUI
 
 
 struct FormattedTextView: View {
-
-    var text: NSAttributedString
+    var text: Text
     
     var body: some View {
-        UILabelView(text: self.text)
-            .padding(.horizontal)
-    }
-}
-
-struct UILabelView: UIViewRepresentable {
-    
-    var text: NSAttributedString
-    
-    func makeUIView(context: UIViewRepresentableContext<UILabelView>) -> UILabel {
-        let label = UILabel(frame: .zero)
-        label.numberOfLines = 0
-        label.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        return label
-    }
-    
-    func updateUIView(_ uiView: UILabel, context: UIViewRepresentableContext<UILabelView>) {
-        uiView.attributedText = self.text
+        text.padding(.horizontal)
     }
 }
