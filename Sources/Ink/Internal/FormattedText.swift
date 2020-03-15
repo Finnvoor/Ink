@@ -47,6 +47,10 @@ internal struct FormattedText: Readable, HTMLConvertible, PlainTextConvertible {
             }
         }
     }
+    
+    func view() -> MarkdownViewWrapper {
+        return MarkdownViewWrapper(type: .none)
+    }
 
     func plainText() -> String {
         components.reduce(into: "") { string, component in

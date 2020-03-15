@@ -147,6 +147,10 @@ internal struct List: Fragment {
 
         return "<\(tagName)\(startAttribute)>\(body)</\(tagName)>"
     }
+    
+    func view() -> MarkdownViewWrapper {
+        return MarkdownViewWrapper(type: .none)
+    }
 
     func plainText() -> String {
         var isFirst = true

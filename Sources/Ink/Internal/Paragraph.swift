@@ -18,6 +18,10 @@ internal struct Paragraph: Fragment {
         let body = text.html(usingURLs: urls, modifiers: modifiers)
         return "<p>\(body)</p>"
     }
+    
+    func view() -> MarkdownViewWrapper {
+        return MarkdownViewWrapper(type: .none)
+    }
 
     func plainText() -> String {
         text.plainText()

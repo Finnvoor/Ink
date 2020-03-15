@@ -38,6 +38,10 @@ struct InlineCode: Fragment {
               modifiers: ModifierCollection) -> String {
         return "<code>\(code)</code>"
     }
+    
+    func view() -> MarkdownViewWrapper {
+        return MarkdownViewWrapper(type: .none)
+    }
 
     func plainText() -> String {
         code

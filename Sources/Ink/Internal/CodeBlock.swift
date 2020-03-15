@@ -52,6 +52,10 @@ internal struct CodeBlock: Fragment {
         let languageClass = language.isEmpty ? "" : " class=\"language-\(language)\""
         return "<pre><code\(languageClass)>\(code)</code></pre>"
     }
+    
+    func view() -> MarkdownViewWrapper {
+        return MarkdownViewWrapper(type: .none)
+    }
 
     func plainText() -> String {
         code

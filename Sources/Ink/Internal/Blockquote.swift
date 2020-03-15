@@ -36,6 +36,10 @@ internal struct Blockquote: Fragment {
         let body = text.html(usingURLs: urls, modifiers: modifiers)
         return "<blockquote><p>\(body)</p></blockquote>"
     }
+    
+    func view() -> MarkdownViewWrapper {
+        return MarkdownViewWrapper(type: .blockquote(BlockquoteView(text: text.plainText())))
+    }
 
     func plainText() -> String {
         text.plainText()

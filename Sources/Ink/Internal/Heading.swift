@@ -28,6 +28,10 @@ internal struct Heading: Fragment {
         let tagName = "h\(level)"
         return "<\(tagName)>\(body)</\(tagName)>"
     }
+    
+    func view() -> MarkdownViewWrapper {
+        return MarkdownViewWrapper(type: .none)
+    }
 
     func plainText() -> String {
         stripTrailingMarkers(from: text.plainText())

@@ -25,6 +25,10 @@ internal struct Image: Fragment {
 
         return "<img src=\"\(url)\"\(alt)/>"
     }
+    
+    func view() -> MarkdownViewWrapper {
+        return MarkdownViewWrapper(type: .none)
+    }
 
     func plainText() -> String {
         link.plainText()

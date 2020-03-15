@@ -34,6 +34,10 @@ internal struct Link: Fragment {
         let title = text.html(usingURLs: urls, modifiers: modifiers)
         return "<a href=\"\(url)\">\(title)</a>"
     }
+    
+    func view() -> MarkdownViewWrapper {
+        return MarkdownViewWrapper(type: .none)
+    }
 
     func plainText() -> String {
         text.plainText()

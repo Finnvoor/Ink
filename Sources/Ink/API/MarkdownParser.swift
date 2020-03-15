@@ -4,6 +4,8 @@
 *  MIT license, see LICENSE file for details
 */
 
+import SwiftUI
+
 ///
 /// A parser used to convert Markdown text into HTML.
 ///
@@ -34,6 +36,15 @@ public struct MarkdownParser {
     /// use the `parse` method instead.
     public func html(from markdown: String) -> String {
         parse(markdown).html
+    }
+    
+    public func view(from markdown: String) -> AnyView {
+        return VStack(alignment: .leading) {
+            HStack { Spacer() }
+            ForEach(parse(markdown).viewWrappers, id: \.id) { viewWrapper in
+                viewWrapper.view
+            }
+        }.eraseToAnyView()
     }
 
     /// Parse a Markdown string into a `Markdown` value, which contains
@@ -92,9 +103,14 @@ public struct MarkdownParser {
 
             result.append(html)
         }
+        
+        let viewWrappers = fragments.map {
+            $0.fragment.view()
+        }
 
         return Markdown(
             html: html,
+            viewWrappers: viewWrappers,
             titleHeading: titleHeading,
             metadata: metadata?.values ?? [:]
         )

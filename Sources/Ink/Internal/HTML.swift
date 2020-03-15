@@ -55,6 +55,10 @@ internal struct HTML: Fragment {
               modifiers: ModifierCollection) -> String {
         String(string)
     }
+    
+    func view() -> MarkdownViewWrapper {
+        return MarkdownViewWrapper(type: .none)
+    }
 
     func plainText() -> String {
         // Since we want to strip all HTML from plain text output,

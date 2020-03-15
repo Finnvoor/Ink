@@ -21,6 +21,10 @@ internal struct HorizontalLine: Fragment {
               modifiers: ModifierCollection) -> String {
         "<hr>"
     }
+    
+    func view() -> MarkdownViewWrapper {
+        return MarkdownViewWrapper(type: .none)
+    }
 
     func plainText() -> String {
         // Since we want to strip all HTML from plain text output,
