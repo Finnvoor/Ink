@@ -20,7 +20,6 @@ struct ExampleView: View {
         parser.view(from: self.markdown)
     }
 }
-}
 ```
 
 ## Supported syntax
