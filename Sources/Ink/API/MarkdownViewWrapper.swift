@@ -16,6 +16,8 @@ public struct MarkdownViewWrapper: Identifiable {
         switch type {
         case .text(let text):
             return text.eraseToAnyView()
+        case .heading(let heading):
+            return heading.eraseToAnyView()
         case .blockquote(let blockquote):
             return blockquote.eraseToAnyView()
         case .none:
@@ -27,6 +29,7 @@ public struct MarkdownViewWrapper: Identifiable {
 @available(iOS 13.0, *)
 internal enum MarkdownViewType {
     case text(Text)
+    case heading(HeadingView)
     case blockquote(BlockquoteView)
     case none
 }
