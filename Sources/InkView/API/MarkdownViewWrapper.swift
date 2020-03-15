@@ -14,16 +14,16 @@ public struct MarkdownViewWrapper: Identifiable {
     var type: MarkdownViewType
     var view: some View {
         switch type {
-        case .text(let text):
-            return text.eraseToAnyView()
-        case .heading(let heading):
-            return heading.eraseToAnyView()
+        case .heading(let heading, let level):
+            return HeadingView(text: heading, level: level).eraseToAnyView()
         case .horizontalLine:
             return HorizontalLineView().eraseToAnyView()
-        case .codeBlock(let codeBlock):
-            return codeBlock.eraseToAnyView()
-        case .blockquote(let blockquote):
-            return blockquote.eraseToAnyView()
+        case .codeBlock(let code, let options):
+            return CodeBlockView(text: code, options: options).eraseToAnyView()
+        case .blockquote(let quote):
+            return BlockquoteView(text: quote).eraseToAnyView()
+        case .formattedText(let text):
+            return Text(text.string).eraseToAnyView()
         case .none:
             return EmptyView().eraseToAnyView()
         }
@@ -32,10 +32,10 @@ public struct MarkdownViewWrapper: Identifiable {
 
 @available(iOS 13.0, *)
 internal enum MarkdownViewType {
-    case text(Text)
-    case heading(HeadingView)
+    case heading(heading: String, level: Int)
     case horizontalLine
-    case codeBlock(CodeBlockView)
-    case blockquote(BlockquoteView)
+    case codeBlock(code: String, options: MarkdownParser.ViewOptions)
+    case blockquote(quote: String)
+    case formattedText(text: NSAttributedString)
     case none
 }

@@ -57,7 +57,7 @@ internal struct CodeBlock: Fragment {
         let unescapedCode = code
             .trimmingCharacters(in: .whitespacesAndNewlines)
             .unescaped
-        return MarkdownViewWrapper(type: .codeBlock(CodeBlockView(text: unescapedCode, options: options)))
+        return MarkdownViewWrapper(type: .codeBlock(code: unescapedCode, options: options))
     }
 
     func plainText() -> String {
