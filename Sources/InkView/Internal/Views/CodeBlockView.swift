@@ -22,7 +22,8 @@ internal struct CodeBlockView: View {
                 ScrollView(.horizontal) {
                     Text(self.text)
                         .font(.system(size: 14, design: .monospaced))
-                }.padding()
+                        .padding()
+                }
             }
         }.background(Color(UIColor.secondarySystemBackground)).padding()
     }
