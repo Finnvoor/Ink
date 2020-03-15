@@ -22,6 +22,28 @@ struct ExampleView: View {
 }
 ```
 
+## Installation
+
+InkView is distributed using the [Swift Package Manager](https://swift.org/package-manager). To install it into a project, simply add it as a dependency within your `Package.swift` manifest:
+
+```swift
+let package = Package(
+    ...
+    dependencies: [
+        .package(url: "https://github.com/Finnvoor/InkView.git", from: .branch("master"))
+    ],
+    ...
+)
+```
+
+Then import Ink wherever you’d like to use it:
+
+```swift
+import InkView
+```
+
+For more information on how to use the Swift Package Manager, check out [this article](https://www.swiftbysundell.com/articles/managing-dependencies-using-the-swift-package-manager), or [its official documentation](https://github.com/apple/swift-package-manager/tree/master/Documentation).
+
 ## Supported syntax
 InkView currently supports the following Markdown features:
 
