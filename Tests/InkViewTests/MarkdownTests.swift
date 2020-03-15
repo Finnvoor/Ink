@@ -5,7 +5,7 @@
 */
 
 import XCTest
-import Ink
+import InkView
 
 final class MarkdownTests: XCTestCase {
     func testParsingMetadata() {

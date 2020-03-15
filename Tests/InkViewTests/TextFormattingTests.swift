@@ -5,7 +5,7 @@
 */
 
 import XCTest
-import Ink
+import InkView
 
 final class TextFormattingTests: XCTestCase {
     func testParagraph() {

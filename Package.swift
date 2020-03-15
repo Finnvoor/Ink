@@ -9,17 +9,15 @@
 import PackageDescription
 
 let package = Package(
-    name: "Ink",
+    name: "InkView",
     platforms: [
         .iOS(.v13)
     ],
     products: [
-        .library(name: "Ink", targets: ["Ink"]),
-        .executable(name: "ink-cli", targets: ["InkCLI"])
+        .library(name: "InkView", targets: ["InkView"]),
     ],
     targets: [
-        .target(name: "Ink"),
-        .target(name: "InkCLI", dependencies: ["Ink"]),
-        .testTarget(name: "InkTests", dependencies: ["Ink"])
+        .target(name: "InkView"),
+        .testTarget(name: "InkViewTests", dependencies: ["InkView"])
     ]
 )
