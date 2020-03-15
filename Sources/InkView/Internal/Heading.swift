@@ -30,7 +30,7 @@ internal struct Heading: Fragment {
     }
     
     func view() -> MarkdownViewWrapper {
-        MarkdownViewWrapper(type: .heading(HeadingView(text: text.plainText().unescaped)))
+        MarkdownViewWrapper(type: .heading(HeadingView(text: text.plainText().unescaped, level: level)))
     }
 
     func plainText() -> String {
