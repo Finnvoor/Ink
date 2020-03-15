@@ -50,10 +50,6 @@ internal struct FormattedText: Readable, HTMLConvertible, ViewConvertible, Plain
     }
     
     func view(options: MarkdownParser.ViewOptions) -> MarkdownViewWrapper {
-         
-//        var mod: (Text) -> Text = { text in
-//            Text.bold(text)()
-//        }
         var modifiers: [(Text) -> () -> Text] = []
         let formattedText = components.reduce(into: Text("")) { text, component in
             switch component {
@@ -79,31 +75,14 @@ internal struct FormattedText: Readable, HTMLConvertible, ViewConvertible, Plain
                     _ = modifiers.removeLast()
                 }
                 break
-            case .fragment(let fragment, let rawString):
-                break
+            case .fragment(let fragment, _):
+                if let fragmentText = fragment.view(options: options).view as? Text {
+                    text = text + fragmentText
+                }
             }
-//            text = mod(text)
-//            Text("").bold()
-//            text = text + modifier(Text(""))
         }
         
         return MarkdownViewWrapper(type: .formattedText(text: formattedText))
-        
-        
-        
-//        let attributedString = components.reduce(into: NSMutableAttributedString(string: "")) { attributedString, component in
-//            switch component {
-//            case .linebreak:
-//                attributedString.append(NSAttributedString(string: "\n"))
-//            case .text(let text):
-//                attributedString.append(NSAttributedString(string: String(text)))
-//            case .styleMarker(let marker):
-//                break
-//            case .fragment(let frament, let rawString):
-//                break
-//            }
-//        }
-//        return MarkdownViewWrapper(type: .formattedText(text: attributedString))
     }
 
     func plainText() -> String {

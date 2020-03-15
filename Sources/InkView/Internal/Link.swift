@@ -36,7 +36,7 @@ internal struct Link: Fragment {
     }
     
     func view(options: MarkdownParser.ViewOptions) -> MarkdownViewWrapper {
-        MarkdownViewWrapper(type: .none)
+        MarkdownViewWrapper(type: .link(text: text.plainText().unescaped, url: ""))
     }
 
     func plainText() -> String {

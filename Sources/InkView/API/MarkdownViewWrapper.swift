@@ -24,6 +24,8 @@ public struct MarkdownViewWrapper: Identifiable {
             return BlockquoteView(text: quote).eraseToAnyView()
         case .formattedText(let text):
             return FormattedTextView(text: text).eraseToAnyView()
+        case .link(let text, let url):
+            return LinkText(text: text, url: url).eraseToAnyView()
         case .none:
             return EmptyView().eraseToAnyView()
         }
@@ -37,5 +39,6 @@ internal enum MarkdownViewType {
     case codeBlock(code: String, options: MarkdownParser.ViewOptions)
     case blockquote(quote: String)
     case formattedText(text: Text)
+    case link(text: String, url: String)
     case none
 }
