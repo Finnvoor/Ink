@@ -4,7 +4,7 @@ This is a fork of [John Sundell's](https://twitter.com/johnsundell) Markdown par
 ## Usage
 ```swift
 import SwiftUI
-import Ink
+import InkView
 
 struct ExampleView: View {
     let parser = MarkdownParser()
