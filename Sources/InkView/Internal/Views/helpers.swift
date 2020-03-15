@@ -30,3 +30,9 @@ internal extension View {
         return AnyView(self)
     }
 }
+
+internal extension Text {
+    func strikethrough() -> Text {
+        return self.strikethrough(true, color: .none)
+    }
+}
