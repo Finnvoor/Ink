@@ -16,6 +16,6 @@ internal struct CodeBlockView: View {
                 .font(.system(size: 14))
                 .padding()
             Spacer()
-        }.background(Color(UIColor.systemGroupedBackground)).padding()
+        }.background(Color(UIColor.secondarySystemBackground)).padding()
     }
 }
