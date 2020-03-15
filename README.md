@@ -30,7 +30,7 @@ InkView is distributed using the [Swift Package Manager](https://swift.org/packa
 let package = Package(
     ...
     dependencies: [
-        .package(url: "https://github.com/Finnvoor/InkView.git", from: .branch("master"))
+        .package(url: "https://github.com/Finnvoor/InkView.git", .branch("master"))
     ],
     ...
 )
