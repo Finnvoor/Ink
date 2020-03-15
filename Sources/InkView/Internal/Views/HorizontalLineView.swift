@@ -10,7 +10,7 @@ import SwiftUI
 internal struct HorizontalLineView: View {
     var body: some View {
         Rectangle()
-            .frame(height: 6)
+            .frame(height: 2)
             .foregroundColor(.secondary)
             .padding(.horizontal)
     }
