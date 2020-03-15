@@ -36,7 +36,7 @@ let package = Package(
 )
 ```
 
-Then import Ink wherever you’d like to use it:
+Then import InkView wherever you’d like to use it:
 
 ```swift
 import InkView
