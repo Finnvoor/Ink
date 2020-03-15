@@ -5,7 +5,7 @@
 */
 import Foundation
 
-internal struct FormattedText: Readable, HTMLConvertible, PlainTextConvertible {
+internal struct FormattedText: Readable, HTMLConvertible, ViewConvertible, PlainTextConvertible {
     private var components = [Component]()
 
     static func read(using reader: inout Reader) -> Self {
@@ -49,7 +49,7 @@ internal struct FormattedText: Readable, HTMLConvertible, PlainTextConvertible {
         }
     }
     
-    func view() -> MarkdownViewWrapper {
+    func view(options: MarkdownParser.ViewOptions) -> MarkdownViewWrapper {
         let attributedString = components.reduce(into: NSMutableAttributedString(string: "")) { attributedString, component in
             switch component {
             case .linebreak:

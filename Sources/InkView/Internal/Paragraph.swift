@@ -20,7 +20,7 @@ internal struct Paragraph: Fragment {
     }
     
     func view(options: MarkdownParser.ViewOptions) -> MarkdownViewWrapper {
-        MarkdownViewWrapper(type: .none)
+        return text.view(options: options)
     }
 
     func plainText() -> String {
