@@ -64,7 +64,7 @@ internal extension NSAttributedString {
     
     func strikethrough() -> NSAttributedString {
         var attributes = self.attributes(at: 0, effectiveRange: nil)
-        attributes.updateValue(NSUnderlineStyle.single, forKey: .strikethroughStyle)
+        attributes.updateValue(NSUnderlineStyle.single.rawValue, forKey: .strikethroughStyle)
         return NSAttributedString(string: self.string, attributes: attributes)
     }
 }
