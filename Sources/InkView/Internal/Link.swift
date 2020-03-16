@@ -3,8 +3,9 @@
 *  Copyright (c) John Sundell 2019
 *  MIT license, see LICENSE file for details
 */
+import UIKit
 
-internal struct Link: Fragment {
+internal struct Link: Fragment, AttributedStringConvertible {
     var modifierTarget: Modifier.Target { .links }
 
     var target: Target
@@ -37,6 +38,12 @@ internal struct Link: Fragment {
     
     func view(options: MarkdownParser.ViewOptions) -> MarkdownViewWrapper {
         MarkdownViewWrapper(type: .link(text: text.plainText().unescaped, url: ""))
+    }
+    
+    func attributedString() -> NSAttributedString {
+        let attrString = NSMutableAttributedString(string: text.plainText().unescaped, attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 17.0)])
+        attrString.addAttribute(.link, value: "www.google.com", range: NSRange(location: 0, length: attrString.string.count))
+        return attrString
     }
 
     func plainText() -> String {

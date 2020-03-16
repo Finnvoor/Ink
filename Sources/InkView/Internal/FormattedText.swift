@@ -75,45 +75,13 @@ internal struct FormattedText: Readable, HTMLConvertible, ViewConvertible, Plain
                     _ = modifiers.removeLast()
                 }
             case .fragment(let fragment, _):
-                break
+                if let converted = fragment as? AttributedStringConvertible {
+                    attributedString.append(converted.attributedString())
+                }
             }
         }
         
         return MarkdownViewWrapper(type: .formattedText(text: attributedString))
-        
-//        var modifiers: [(Text) -> () -> Text] = []
-//        let formattedText = components.reduce(into: Text("")) { text, component in
-//            switch component {
-//            case .linebreak:
-//                text = text + Text("\n")
-//            case .text(let newText):
-//                var newTextText = Text(String(newText))
-//                modifiers.forEach { modifier in
-//                    newTextText = modifier(newTextText)()
-//                }
-//                text = text + newTextText
-//            case .styleMarker(let marker):
-//                if marker.kind == .opening {
-//                    switch marker.style {
-//                    case .bold:
-//                        modifiers.append(Text.bold)
-//                    case .italic:
-//                        modifiers.append(Text.italic)
-//                    case .strikethrough:
-//                        modifiers.append(Text.strikethrough)
-//                    }
-//                } else {
-//                    _ = modifiers.removeLast()
-//                }
-//                break
-//            case .fragment(let fragment, _):
-//                if let fragmentText = fragment.view(options: options).view as? Text {
-//                    text = text + fragmentText
-//                }
-//            }
-//        }
-//
-//        return MarkdownViewWrapper(type: .formattedText(text: formattedText))
     }
 
     func plainText() -> String {

@@ -36,7 +36,6 @@ fileprivate struct UITextViewWrapper: UIViewRepresentable {
         let textField = UITextView()
 
         textField.isEditable = false
-//        textField.font = UIFont.preferredFont(forTextStyle: .body)
         textField.isSelectable = false
         textField.isUserInteractionEnabled = false
         textField.isScrollEnabled = false
