@@ -3,8 +3,9 @@
 *  Copyright (c) John Sundell 2019
 *  MIT license, see LICENSE file for details
 */
+import UIKit
 
-struct InlineCode: Fragment {
+struct InlineCode: Fragment, AttributedStringConvertible {
     var modifierTarget: Modifier.Target { .inlineCode }
 
     private var code: String
@@ -41,6 +42,13 @@ struct InlineCode: Fragment {
     
     func view(options: MarkdownParser.ViewOptions) -> MarkdownViewWrapper {
         MarkdownViewWrapper(type: .none)
+    }
+    
+    func attributedString() -> NSAttributedString {
+        return NSAttributedString(string: code.unescaped, attributes: [
+            NSAttributedString.Key.font: UIFont.monospacedSystemFont(ofSize: 17.0, weight: .regular),
+            NSAttributedString.Key.backgroundColor: UIColor.secondarySystemBackground
+        ])
     }
 
     func plainText() -> String {
