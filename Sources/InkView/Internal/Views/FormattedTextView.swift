@@ -48,7 +48,7 @@ struct UITextViewWrapper: UIViewRepresentable {
         textView.delegate = self.delegate
         textView.isEditable = false
         textView.isSelectable = false
-        textView.isUserInteractionEnabled = false
+        textView.isUserInteractionEnabled = true
         textView.isScrollEnabled = false
         textView.backgroundColor = UIColor.clear
 
