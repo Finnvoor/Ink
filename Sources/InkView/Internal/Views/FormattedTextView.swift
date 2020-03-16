@@ -10,7 +10,7 @@ import SwiftUI
 
 struct FormattedTextView: View {
     let text: NSAttributedString
-    let urlAction: (URL) -> Void
+    let urlAction: (Foundation.URL) -> Void
     
     var body: some View {
         AttributedTextView(text: text, urlAction: urlAction).padding(.horizontal)
@@ -19,7 +19,7 @@ struct FormattedTextView: View {
 
 struct AttributedTextView: View {
     let text: NSAttributedString
-    let urlAction: (URL) -> Void
+    let urlAction: (Foundation.URL) -> Void
     @State private var dynamicHeight: CGFloat = 100
 
     var body: some View {
@@ -32,11 +32,11 @@ struct UITextViewWrapper: UIViewRepresentable {
     typealias UIViewType = UITextView
 
     let text: NSAttributedString
-    let urlAction: (URL) -> Void
+    let urlAction: (Foundation.URL) -> Void
     @Binding var calculatedHeight: CGFloat
     private var delegate: UITextViewWrapperDelegate = UITextViewWrapperDelegate()
     
-    public init(text: NSAttributedString, urlAction: @escaping (URL) -> Void, calculatedHeight: Binding<CGFloat>) {
+    public init(text: NSAttributedString, urlAction: @escaping (Foundation.URL) -> Void, calculatedHeight: Binding<CGFloat>) {
         self.text = text
         self.urlAction = urlAction
         self._calculatedHeight = calculatedHeight
@@ -72,14 +72,14 @@ struct UITextViewWrapper: UIViewRepresentable {
 }
 
 internal class UITextViewWrapperDelegate: NSObject, UITextViewDelegate {
-    var urlAction: (URL) -> Void
+    var urlAction: (Foundation.URL) -> Void
     
     override init() {
         self.urlAction = { _ in }
         super.init()
     }
     
-    fileprivate func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange, interaction: UITextItemInteraction) -> Bool {
+    internal func textView(_ textView: UITextView, shouldInteractWith URL: Foundation.URL, in characterRange: NSRange, interaction: UITextItemInteraction) -> Bool {
         self.urlAction(URL)
         return false
     }
