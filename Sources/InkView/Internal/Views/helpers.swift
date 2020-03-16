@@ -32,6 +32,12 @@ internal extension View {
 }
 
 internal extension NSAttributedString {
+    func body() -> NSAttributedString {
+        var attributes = self.attributes(at: 0, effectiveRange: nil)
+        attributes[NSAttributedString.Key.font] = UIFont.systemFont(ofSize: 17.0)
+        return NSAttributedString(string: self.string, attributes: attributes)
+    }
+    
     func bold() -> NSAttributedString {
         var attributes = self.attributes(at: 0, effectiveRange: nil)
         guard let font = attributes[NSAttributedString.Key.font] as? UIFont,

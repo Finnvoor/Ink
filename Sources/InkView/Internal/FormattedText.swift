@@ -50,11 +50,8 @@ internal struct FormattedText: Readable, HTMLConvertible, ViewConvertible, Plain
     }
     
     func view(options: MarkdownParser.ViewOptions) -> MarkdownViewWrapper {
-        let font = UIFont.systemFont(ofSize: 17.0)
-        var modifiers: [(NSAttributedString) -> () -> NSAttributedString] = []
-        let attributedString = components.reduce(into: NSMutableAttributedString(string: "", attributes: [
-            NSAttributedString.Key.font: font
-        ])) { attributedString, component in
+        var modifiers: [(NSAttributedString) -> () -> NSAttributedString] = [NSAttributedString.body]
+        let attributedString = components.reduce(into: NSMutableAttributedString(string: "")) { attributedString, component in
             switch component {
             case .linebreak:
                 attributedString.append(NSAttributedString(string: "\n"))
