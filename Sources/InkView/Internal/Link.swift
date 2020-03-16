@@ -42,7 +42,7 @@ internal struct Link: Fragment, AttributedStringConvertible {
     
     func attributedString() -> NSAttributedString {
         let attrString = NSMutableAttributedString(string: text.plainText().unescaped, attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 17.0)])
-        attrString.addAttribute(.link, value: "www.google.com", range: NSRange(location: 0, length: attrString.string.count))
+        attrString.addAttribute(.link, value: "https://www.google.com", range: NSRange(location: 0, length: attrString.string.count))
         return attrString
     }
 
