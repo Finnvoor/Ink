@@ -23,7 +23,7 @@ public struct MarkdownViewWrapper: Identifiable {
         case .blockquote(let quote):
             return BlockquoteView(text: quote).eraseToAnyView()
         case .formattedText(let text):
-            return FormattedTextView(text: text).eraseToAnyView()
+            return FormattedTextView(text: text, urlAction: { url in UIApplication.shared.open(Foundation.URL(string: String(url))!) }).eraseToAnyView()
         case .link(let text, let url):
             return LinkText(text: text, url: url).eraseToAnyView()
         case .none:

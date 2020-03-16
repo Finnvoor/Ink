@@ -9,40 +9,51 @@ import SwiftUI
 
 
 struct FormattedTextView: View {
-    var text: NSAttributedString
+    let text: NSAttributedString
+    let urlAction: (URL) -> Void
     
     var body: some View {
-        AttributedTextView(text: text).padding(.horizontal)
+        AttributedTextView(text: text, urlAction: urlAction).padding(.horizontal)
     }
 }
 
 struct AttributedTextView: View {
     let text: NSAttributedString
+    let urlAction: (URL) -> Void
     @State private var dynamicHeight: CGFloat = 100
 
     var body: some View {
-        UITextViewWrapper(text: self.text, calculatedHeight: $dynamicHeight)
+        UITextViewWrapper(text: self.text, urlAction: self.urlAction, calculatedHeight: $dynamicHeight)
             .frame(minHeight: dynamicHeight, maxHeight: dynamicHeight)
     }
 }
 
-fileprivate struct UITextViewWrapper: UIViewRepresentable {
+struct UITextViewWrapper: UIViewRepresentable {
     typealias UIViewType = UITextView
 
     let text: NSAttributedString
+    let urlAction: (URL) -> Void
     @Binding var calculatedHeight: CGFloat
+    private var delegate: UITextViewWrapperDelegate = UITextViewWrapperDelegate()
+    
+    public init(text: NSAttributedString, urlAction: @escaping (URL) -> Void, calculatedHeight: Binding<CGFloat>) {
+        self.text = text
+        self.urlAction = urlAction
+        self._calculatedHeight = calculatedHeight
+    }
 
     func makeUIView(context: UIViewRepresentableContext<UITextViewWrapper>) -> UITextView {
-        let textField = UITextView()
+        let textView = UITextView()
+        self.delegate.urlAction = self.urlAction
+        textView.delegate = self.delegate
+        textView.isEditable = false
+        textView.isSelectable = false
+        textView.isUserInteractionEnabled = false
+        textView.isScrollEnabled = false
+        textView.backgroundColor = UIColor.clear
 
-        textField.isEditable = false
-        textField.isSelectable = false
-        textField.isUserInteractionEnabled = false
-        textField.isScrollEnabled = false
-        textField.backgroundColor = UIColor.clear
-
-        textField.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
-        return textField
+        textView.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
+        return textView
     }
 
     func updateUIView(_ uiView: UITextView, context: UIViewRepresentableContext<UITextViewWrapper>) {
@@ -57,5 +68,19 @@ fileprivate struct UITextViewWrapper: UIViewRepresentable {
                 result.wrappedValue = newSize.height
             }
         }
+    }
+}
+
+internal class UITextViewWrapperDelegate: NSObject, UITextViewDelegate {
+    var urlAction: (URL) -> Void
+    
+    override init() {
+        self.urlAction = { _ in }
+        super.init()
+    }
+    
+    fileprivate func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange, interaction: UITextItemInteraction) -> Bool {
+        self.urlAction(URL)
+        return false
     }
 }
