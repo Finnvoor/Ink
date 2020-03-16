@@ -9,9 +9,27 @@ import SwiftUI
 
 
 struct FormattedTextView: View {
-    var text: Text
+    var text: NSAttributedString
     
     var body: some View {
-        text.padding(.horizontal)
+        AttributedTextView(text).padding(.horizontal)
+    }
+}
+
+struct AttributedTextView: UIViewRepresentable {
+    var attributedText: NSAttributedString
+
+    init(_ attributedText: NSAttributedString) {
+        self.attributedText = attributedText
+    }
+
+    func makeUIView(context: Context) -> UITextView {
+        let view = UITextView()
+        view.isEditable = false
+        return view
+    }
+
+    func updateUIView(_ label: UITextView, context: Context) {
+        label.attributedText = attributedText
     }
 }

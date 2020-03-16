@@ -38,7 +38,7 @@ internal enum MarkdownViewType {
     case horizontalLine
     case codeBlock(code: String, options: MarkdownParser.ViewOptions)
     case blockquote(quote: String)
-    case formattedText(text: Text)
+    case formattedText(text: NSAttributedString)
     case link(text: String, url: String)
     case none
 }

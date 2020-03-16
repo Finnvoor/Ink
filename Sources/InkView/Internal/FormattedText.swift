@@ -50,39 +50,73 @@ internal struct FormattedText: Readable, HTMLConvertible, ViewConvertible, Plain
     }
     
     func view(options: MarkdownParser.ViewOptions) -> MarkdownViewWrapper {
-        var modifiers: [(Text) -> () -> Text] = []
-        let formattedText = components.reduce(into: Text("")) { text, component in
+        let font = UIFont.systemFont(ofSize: 17.0)
+        var modifiers: [(NSAttributedString) -> () -> NSAttributedString] = []
+        let attributedString = components.reduce(into: NSMutableAttributedString(string: "", attributes: [
+            NSAttributedString.Key.font: font
+        ])) { attributedString, component in
             switch component {
             case .linebreak:
-                text = text + Text("\n")
-            case .text(let newText):
-                var newTextText = Text(String(newText))
-                modifiers.forEach { modifier in
-                    newTextText = modifier(newTextText)()
+                attributedString.append(NSAttributedString(string: "\n"))
+            case .text(let text):
+                var newAttributedString = NSAttributedString(string: String(text))
+                for modifier in modifiers {
+                    newAttributedString = modifier(newAttributedString)()
                 }
-                text = text + newTextText
+                attributedString.append(newAttributedString)
             case .styleMarker(let marker):
                 if marker.kind == .opening {
                     switch marker.style {
                     case .bold:
-                        modifiers.append(Text.bold)
+                        modifiers.append(NSAttributedString.bold)
                     case .italic:
-                        modifiers.append(Text.italic)
+                        modifiers.append(NSAttributedString.italic)
                     case .strikethrough:
-                        modifiers.append(Text.strikethrough)
+                        modifiers.append(NSAttributedString.strikethrough)
                     }
                 } else {
                     _ = modifiers.removeLast()
                 }
-                break
             case .fragment(let fragment, _):
-                if let fragmentText = fragment.view(options: options).view as? Text {
-                    text = text + fragmentText
-                }
+                break
             }
         }
         
-        return MarkdownViewWrapper(type: .formattedText(text: formattedText))
+        return MarkdownViewWrapper(type: .formattedText(text: attributedString))
+        
+//        var modifiers: [(Text) -> () -> Text] = []
+//        let formattedText = components.reduce(into: Text("")) { text, component in
+//            switch component {
+//            case .linebreak:
+//                text = text + Text("\n")
+//            case .text(let newText):
+//                var newTextText = Text(String(newText))
+//                modifiers.forEach { modifier in
+//                    newTextText = modifier(newTextText)()
+//                }
+//                text = text + newTextText
+//            case .styleMarker(let marker):
+//                if marker.kind == .opening {
+//                    switch marker.style {
+//                    case .bold:
+//                        modifiers.append(Text.bold)
+//                    case .italic:
+//                        modifiers.append(Text.italic)
+//                    case .strikethrough:
+//                        modifiers.append(Text.strikethrough)
+//                    }
+//                } else {
+//                    _ = modifiers.removeLast()
+//                }
+//                break
+//            case .fragment(let fragment, _):
+//                if let fragmentText = fragment.view(options: options).view as? Text {
+//                    text = text + fragmentText
+//                }
+//            }
+//        }
+//
+//        return MarkdownViewWrapper(type: .formattedText(text: formattedText))
     }
 
     func plainText() -> String {

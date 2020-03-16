@@ -31,8 +31,34 @@ internal extension View {
     }
 }
 
-internal extension Text {
-    func strikethrough() -> Text {
-        return self.strikethrough(true, color: .none)
+internal extension NSAttributedString {
+    func bold() -> NSAttributedString {
+        var attributes = self.attributes(at: 0, effectiveRange: nil)
+        guard let font = attributes[NSAttributedString.Key.font] as? UIFont,
+            let newDescriptor = font.fontDescriptor.withSymbolicTraits(
+                font.fontDescriptor.symbolicTraits.union(.traitBold)
+        ) else {
+            return self
+        }
+        attributes[NSAttributedString.Key.font] = UIFont(descriptor: newDescriptor, size: font.pointSize)
+        return NSAttributedString(string: self.string, attributes: attributes)
+    }
+    
+    func italic() -> NSAttributedString {
+        var attributes = self.attributes(at: 0, effectiveRange: nil)
+        guard let font = attributes[NSAttributedString.Key.font] as? UIFont,
+            let newDescriptor = font.fontDescriptor.withSymbolicTraits(
+                font.fontDescriptor.symbolicTraits.union(.traitItalic)
+        ) else {
+            return self
+        }
+        attributes[NSAttributedString.Key.font] = UIFont(descriptor: newDescriptor, size: font.pointSize)
+        return NSAttributedString(string: self.string, attributes: attributes)
+    }
+    
+    func strikethrough() -> NSAttributedString {
+        var attributes = self.attributes(at: 0, effectiveRange: nil)
+        attributes.updateValue(NSUnderlineStyle.single, forKey: .strikethroughColor)
+        return NSAttributedString(string: self.string, attributes: attributes)
     }
 }
