@@ -50,6 +50,12 @@ For more information on how to use the Swift Package Manager, check out [this ar
 InkView currently supports the following Markdown features:
 
 - Headings (H1 - H6), using leading pound signs, for example `## H2`.
-- Blockquotes can be created by placing a greater-than arrow at the start of a line, like this: `> This is a blockquote`.
-- Horizontal lines can be placed using either three asterisks (`***`) or three dashes (`---`) on a new line.
+- Italic text, by surrounding a piece of text with either an asterisk (*), or an underscore (_). For example *Italic text*.
+- Bold text, by surrounding a piece of text with either two asterisks (**), or two underscores (__). For example **Bold text**.
+- Text strikethrough, by surrounding a piece of text with two tildes (~~), for example ~~Strikethrough text~~.
+- Inline code, marked with a backtick on either site of the code.
 - Code blocks, marked with three or more backticks both above and below the block.
+- Links, using the following syntax: [Title](url).
+- Horizontal lines can be placed using either three asterisks (`***`) or three dashes (`---`) on a new line.
+- Blockquotes can be created by placing a greater-than arrow at the start of a line, like this: `> This is a blockquote`.
+
