@@ -51,11 +51,12 @@ public struct MarkdownParser {
     }
     
     public func view(from markdown: String) -> AnyView {
-        return VStack(alignment: .leading) {
+        return VStack(alignment: .leading, spacing: 0) {
             HStack { Spacer() }
             ForEach(parse(markdown).viewWrappers, id: \.id) { viewWrapper in
                 viewWrapper.view
             }
+            Spacer()
         }.eraseToAnyView()
     }
 

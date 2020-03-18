@@ -13,7 +13,8 @@ struct FormattedTextView: View {
     let urlAction: (Foundation.URL) -> Void
     
     var body: some View {
-        AttributedTextView(text: text, urlAction: urlAction).padding(.horizontal)
+        AttributedTextView(text: text, urlAction: urlAction)
+            .padding(.horizontal, 12)
     }
 }
 
