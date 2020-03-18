@@ -24,6 +24,8 @@ struct ExampleView: View {
 }
 ```
 
+![InkView](screenshot.png)
+
 ## Installation
 
 InkView is distributed using the [Swift Package Manager](https://swift.org/package-manager). To install it into a project, simply add it as a dependency within your `Package.swift` manifest:
