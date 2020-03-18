@@ -37,12 +37,22 @@ internal struct Link: Fragment, AttributedStringConvertible {
     }
     
     func view(options: MarkdownParser.ViewOptions) -> MarkdownViewWrapper {
-        MarkdownViewWrapper(type: .link(text: text.plainText().unescaped, url: ""))
+        switch target {
+        case .url(let url):
+            return MarkdownViewWrapper(type: .link(text: text.plainText().unescaped, url: String(url)))
+        default:
+            return MarkdownViewWrapper(type: .link(text: text.plainText().unescaped, url: ""))
+        }
     }
     
     func attributedString() -> NSAttributedString {
         let attrString = NSMutableAttributedString(string: text.plainText().unescaped, attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 17.0)])
-        attrString.addAttribute(.link, value: "https://www.google.com", range: NSRange(location: 0, length: attrString.string.count))
+        switch target {
+        case .url(let url):
+            attrString.addAttribute(.link, value: String(url), range: NSRange(location: 0, length: attrString.string.count))
+        default:
+            break
+        }
         return attrString
     }
 
