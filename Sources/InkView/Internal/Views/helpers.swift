@@ -33,6 +33,7 @@ internal extension View {
 
 internal extension NSAttributedString {
     func body() -> NSAttributedString {
+        guard self.length > 0 else { return self }
         var attributes = self.attributes(at: 0, effectiveRange: nil)
         attributes[NSAttributedString.Key.font] = UIFont.systemFont(ofSize: 17.0)
         attributes[NSAttributedString.Key.foregroundColor] = UIColor.label
@@ -40,6 +41,7 @@ internal extension NSAttributedString {
     }
     
     func bold() -> NSAttributedString {
+        guard self.length > 0 else { return self }
         var attributes = self.attributes(at: 0, effectiveRange: nil)
         guard let font = attributes[NSAttributedString.Key.font] as? UIFont,
             let newDescriptor = font.fontDescriptor.withSymbolicTraits(
@@ -52,6 +54,7 @@ internal extension NSAttributedString {
     }
     
     func italic() -> NSAttributedString {
+        guard self.length > 0 else { return self }
         var attributes = self.attributes(at: 0, effectiveRange: nil)
         guard let font = attributes[NSAttributedString.Key.font] as? UIFont,
             let newDescriptor = font.fontDescriptor.withSymbolicTraits(
@@ -64,6 +67,7 @@ internal extension NSAttributedString {
     }
     
     func strikethrough() -> NSAttributedString {
+        guard self.length > 0 else { return self }
         var attributes = self.attributes(at: 0, effectiveRange: nil)
         attributes.updateValue(NSUnderlineStyle.single.rawValue, forKey: .strikethroughStyle)
         return NSAttributedString(string: self.string, attributes: attributes)
