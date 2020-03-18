@@ -35,6 +35,7 @@ internal extension NSAttributedString {
     func body() -> NSAttributedString {
         var attributes = self.attributes(at: 0, effectiveRange: nil)
         attributes[NSAttributedString.Key.font] = UIFont.systemFont(ofSize: 17.0)
+        attributes[NSAttributedString.Key.foregroundColor] = UIColor.label
         return NSAttributedString(string: self.string, attributes: attributes)
     }
     

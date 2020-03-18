@@ -47,6 +47,7 @@ struct InlineCode: Fragment, AttributedStringConvertible {
     func attributedString() -> NSAttributedString {
         return NSAttributedString(string: code.unescaped, attributes: [
             NSAttributedString.Key.font: UIFont.monospacedSystemFont(ofSize: 17.0, weight: .regular),
+            NSAttributedString.Key.foregroundColor: UIColor.label,
             NSAttributedString.Key.backgroundColor: UIColor.secondarySystemBackground
         ])
     }

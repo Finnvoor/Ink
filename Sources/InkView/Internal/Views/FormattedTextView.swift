@@ -7,7 +7,6 @@
 
 import SwiftUI
 
-
 struct FormattedTextView: View {
     let text: NSAttributedString
     let urlAction: (Foundation.URL) -> Void
